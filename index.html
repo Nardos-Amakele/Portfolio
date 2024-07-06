@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Director/Graphic Designer - Suze LaGasa</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/custom.css">
+   
+</head>
+<body class="homeBody">
+    <div class="container homeContainer vh-100">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="homeTitle">
+                    Unlocking The Future:<br> Aspiring Software Engineer
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="homeName">
+                    Nardos Amakele
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="description">
+                    Hello there, I am Nardos. I am a 3rd year software engineering student at Addis Ababa University. I am passionate about creating innovative solutions that
+                    transform the digital landscape. With a strong foundation in programming, problem-solving, and a keen eye for detail, I am
+                    dedicated to expanding my knowledge and skills to contribute to the field of software engineering and innovation.               
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="follow-cursor" id="followCursor">
+        Hold
+        <div class="progress-border"></div>
+    </div>
+    <script src="./script/script.js"></script>
+
+
+    <script>
+        const followCursor = document.getElementById('followCursor');
+        const progressBorder = followCursor.querySelector('.progress-border');
+        let holdTimeout;
+
+        document.addEventListener('mousemove', (e) => {
+            followCursor.style.left = `${e.pageX - 50}px`; 
+            followCursor.style.top = `${e.pageY - 50}px`;  
+            followCursor.style.display = 'flex';
+        });
+
+        document.addEventListener('mousedown', () => {
+            holdTimeout = setTimeout(() => {
+                document.body.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = 'about.html';
+                }, 1000); 
+            }, 1000);
+            followCursor.classList.add('hold');
+        });
+
+        document.addEventListener('mouseup', () => {
+            clearTimeout(holdTimeout);
+            followCursor.classList.remove('hold');
+        });
+
+        document.addEventListener('mouseleave', () => {
+            followCursor.style.display = 'none';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            followCursor.style.display = 'flex';
+        });
+    </script>
+</body>
+</html>
