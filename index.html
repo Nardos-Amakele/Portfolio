@@ -6,7 +6,6 @@
     <title>Creative Director/Graphic Designer - Suze LaGasa</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/custom.css">
-   
 </head>
 <body class="homeBody">
     <div class="container homeContainer vh-100">
@@ -39,19 +38,13 @@
     </div>
     <script src="./script/script.js"></script>
 
-
     <script>
         const followCursor = document.getElementById('followCursor');
         const progressBorder = followCursor.querySelector('.progress-border');
         let holdTimeout;
 
-        document.addEventListener('mousemove', (e) => {
-            followCursor.style.left = `${e.pageX - 50}px`; 
-            followCursor.style.top = `${e.pageY - 50}px`;  
-            followCursor.style.display = 'flex';
-        });
-
-        document.addEventListener('mousedown', () => {
+        // Function to handle the start of the hold action
+        function handleHoldStart() {
             holdTimeout = setTimeout(() => {
                 document.body.classList.add('fade-out');
                 setTimeout(() => {
@@ -59,18 +52,40 @@
                 }, 1000); 
             }, 1000);
             followCursor.classList.add('hold');
-        });
+        }
 
-        document.addEventListener('mouseup', () => {
+        // Function to handle the end of the hold action
+        function handleHoldEnd() {
             clearTimeout(holdTimeout);
             followCursor.classList.remove('hold');
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            followCursor.style.left = `${e.pageX - 50}px`; 
+            followCursor.style.top = `${e.pageY - 50}px`;  
+            followCursor.style.display = 'flex';
         });
+
+        document.addEventListener('mousedown', handleHoldStart);
+        document.addEventListener('mouseup', handleHoldEnd);
+
+        // Add touch event listeners
+        document.addEventListener('touchstart', handleHoldStart);
+        document.addEventListener('touchend', handleHoldEnd);
 
         document.addEventListener('mouseleave', () => {
             followCursor.style.display = 'none';
         });
 
         document.addEventListener('mouseenter', () => {
+            followCursor.style.display = 'flex';
+        });
+
+        // Adjust follow cursor position for touch events
+        document.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            followCursor.style.left = `${touch.pageX - 50}px`; 
+            followCursor.style.top = `${touch.pageY - 50}px`;  
             followCursor.style.display = 'flex';
         });
     </script>
