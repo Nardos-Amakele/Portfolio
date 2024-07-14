@@ -1002,6 +1002,15 @@ footer .d-flex a {
     font-family: 'Playfair Display', serif;
     
 }
+@media (max-width: 768px) {
+    .homeName {
+        font-size: 4em;
+    }
+    .description {
+        font-size: 1em;
+        width:100%;    
+    }
+}
 .description {
     font-size: 1.2em;
     color: #333;
